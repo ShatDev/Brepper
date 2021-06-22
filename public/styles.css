@@ -32,7 +32,7 @@ body{
 .navbar-left {
 position: absolute;
 right: 80px;
-top : 8.5px;
+top : 6px;
 }
 
 .user {
@@ -48,6 +48,6 @@ top : 8.5px;
 }
 .buttons:hover{
     transform: translate(2px,2px);
-    color: rgb(99, 223, 210);
+ 
 
 }

@@ -1,0 +1,32 @@
+{
+  "name": "bepper",
+  "version": "0.0.1",
+  "description": "App for croudfunding.",
+  "scripts": {
+    "compile": "npx truffle compile",
+    "console:kovan": "npx truffle console --network kovan",
+    "solhint": "solhint ./contracts/**/*.sol",
+    "lint": "yarn solhint",
+    "migrate:kovan": "npx truffle migrate --network kovan",
+    "test": "npx truffle test"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@truffle/hdwallet-provider": "^1.2.1",
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.0",
+    "depcheck": "^1.3.1",
+    "eslint": "^6.1.0",
+    "solhint": "^3.3.2",
+    "truffle": "^5.3.1",
+    "web3": "^1.3.6"
+  },
+  "resolutions": {
+    "**/minimist": "^0.2.1",
+    "**/node-fetch": "^2.6.1",
+    "**/yargs-parser": "^13.1.2",
+    "**/mem": "^4.0.0"
+  }
+}

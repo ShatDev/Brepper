@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "description": "App for croudfunding.",
   "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "compile": "npx truffle compile",
     "console:kovan": "npx truffle console --network kovan",
     "solhint": "solhint ./contracts/**/*.sol",
@@ -16,6 +18,9 @@
     "dotenv": "^8.2.0"
   },
   "devDependencies": {
+    "react": "16.11.0",
+    "react-dom": "16.11.0",
+    "react-scripts": "3.2.0",
     "chai": "^4.3.0",
     "depcheck": "^1.3.1",
     "eslint": "^6.1.0",
@@ -28,5 +33,17 @@
     "**/node-fetch": "^2.6.1",
     "**/yargs-parser": "^13.1.2",
     "**/mem": "^4.0.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

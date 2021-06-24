@@ -11,7 +11,7 @@ const getWeb3 = () =>
     }
   });
 
-$(window).load(function() {
+window.addEventListener('load', () => {
   getWeb3().then(async (web3) => {
     const networkId = await web3.eth.net.getId();
     $.getJSON("fundingCreator.json", (FundingCreatorContract) => {

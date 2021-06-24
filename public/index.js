@@ -1,6 +1,3 @@
-// const FundingCreatorContract = require("../build/contracts/fundingCreator.json");
-// console.log(FundingCreatorContract);
-
 const getWeb3 = () =>
   new Promise(async (resolve, reject) => {
     if (window.ethereum) {

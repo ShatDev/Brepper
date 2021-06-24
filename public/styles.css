@@ -1,0 +1,329 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+:root {
+     --background-color : white;
+     --secondary-color : whitesmoke;
+     --accent-color: rgb(2, 238, 255);
+     --cute-font :   'Rubik', sans-serif;
+}
+body{
+     margin: 0;
+     background-color: var(--background-color);
+     font-family: 'Rubik', sans-serif;
+   
+}
+
+/* Navbar */
+#navbar {
+     position:sticky;
+     padding: 0.2px 0 0.1px 40px;
+     box-shadow: 1px 1px 20px 2px rgb(0, 0, 0, 0.4);
+     cursor: default;
+     background-color: var(--secondary-color);
+    
+}
+
+.nav-logo {
+     font-family: 'Yanone Kaffeesatz', sans-serif;
+     font-size: 28px;
+     display: inline-block;
+}  
+
+ .navbar-left {
+     position: absolute;
+     right: 250px;
+     top : 6px;
+
+ }
+ /* Navbar Dropdown */
+
+.user-dropdown{
+     position: absolute;
+     right: 80px;
+     top : 2px;
+
+}
+.user {
+     color: black !important;
+     display: inline-block;
+     margin-left: 15px;
+     cursor: pointer;
+     transition-duration: 0.1s;
+
+     background-color: var(--background-color);
+     border-radius: 10px;
+     padding: 5px;
+     box-shadow: 1px 2px 4px 1px rgb(0, 0, 0, 0.4);
+}
+
+
+.dropdown-content {
+     font-family: var(--cute-font);
+     display: none;
+     position: absolute;
+     background-color: #f9f9f9;
+     min-width: 160px;
+     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+     padding: 10px 0 10px 0;
+     z-index: 1;
+     right: 0;
+}
+
+.dropdown-content a {
+     color: black;
+     padding: 12px 16px;
+     text-decoration: none;
+     display: block;
+     cursor: pointer;
+}
+
+.dropdown-content a:hover {
+      background-color: rgb(221, 219, 219);
+  }
+.user-dropdown:hover .dropdown-content {
+      display: block;
+}
+
+/* Navbar Buttons */
+
+.buttons{
+     display: inline-block;
+     margin-left: 20px;
+
+     color: turquoise;
+     cursor: pointer;
+     transition-duration: 0.1s;
+}
+.buttons:hover{
+     transform: translate(2px,2px);
+}
+
+
+
+/* Fundraiser Body */
+
+.body-div{
+     display: grid;
+     grid-template-areas:
+     'header header header header header header'
+     'main main main right right right'
+     'footer footer footer footer footer footer';
+     grid-gap: 10px;
+     background-color: var(--secondary-color);
+     padding: 20px;
+    
+     margin: 10px 50px ;
+     box-shadow: 1px 2px 4px 1px rgb(0, 0, 0, 0.4);
+}
+.header-div{
+     grid-area: header;
+     font-family: 'Roboto', sans-serif;
+     text-align: center;
+}
+/* Main Div */
+.main-div{
+      grid-area: main;
+      width: 100%;
+}
+.fundraiser-img {
+     width: 100%;
+     height: 20%;
+}
+.fundraiser-details{
+     grid-area: right;
+     width: clamp(150px , 300px , 400px);
+
+
+}
+.fundraiser-details button {
+     font-family: var(--cute-font);
+     font-weight: bold;
+     color: white;
+     letter-spacing: 2px;
+     display: block;
+     width: 100%;
+     margin-bottom: 10px;
+     cursor: pointer;
+     border-radius: 10px;
+     height:  40px;
+     border-style: none;
+     box-shadow: 1px 2px 2px 1px rgba(63, 48, 48, 0.3);
+     transition-duration: 0.2s;
+}
+.contribute-button{
+      background-color: var(--accent-color) ;
+}
+.contribute-button:hover{
+
+      box-shadow: 1px 2px 4px 2px rgb(0, 0, 0, 0.5);
+}
+.share-button{
+     background-color: rgb(0, 183, 255);
+}
+.share-button:hover{
+     box-shadow: 1px 2px 2px 2px rgb(0, 0, 0, 0.4);
+}
+
+/* Contributions Div */
+
+.contributions-div h2 {
+     background-color: rgb(207, 201, 201);
+     margin-top: 0;
+     font-size: 20px;
+ text-align: center;
+
+}
+.contributions-div{
+     text-align: center;
+     height: 400px;
+     width: auto;
+     grid-area: menu;
+     box-shadow: 1px 2px 4px 1px rgb(0, 0, 0, 0.4);
+}
+.contributions-div h4 {
+     color: rgb(224, 83, 83);
+}
+.contribution-amount{
+    color:rgb(31, 161, 170)
+}
+/* Contributions Progress  */
+.progress-container {
+     background: #fff;
+     border-radius: 5px;
+     cursor: default;
+     margin: 40px 20px;
+     height: 5px;
+     width: 90%;
+   }
+   
+   .progress {
+     background: #242323;
+     border-radius: 5px;
+     height: 100%;
+     /* change this to show progress */
+     width: 30%;
+     transition: width 0.1s linear;
+   }
+   .duration-wrapper {
+     position: relative;
+     top: -25px;
+     display: flex;
+     justify-content: space-between;
+   }
+   #duration {
+     margin-left: 185px;
+     
+    
+   }   
+/* Footer-div */
+
+.footer-div{
+     background-color: rgb(224, 223, 223);
+     box-shadow: 1px 2px 4px 1px rgb(0, 0, 0, 0.4);
+     grid-area: footer;
+     height:  400px;
+     border-radius: 10px;
+     display: grid;
+     grid-template-areas:
+     'header header header header header header'
+     'menu main main main main main'
+     'menu footer footer footer footer footer';
+     grid-gap: 10px;
+}
+* {box-sizing:border-box}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}

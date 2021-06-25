@@ -1,3 +1,6 @@
+
+
+
 const getWeb3 = () =>
   new Promise(async (resolve, reject) => {
     if (window.ethereum) {
@@ -14,13 +17,18 @@ const getWeb3 = () =>
 window.addEventListener('load', () => {
   getWeb3().then(async (web3) => {
     const networkId = await web3.eth.net.getId();
-    $.getJSON("fundingCreator.json", (FundingCreatorContract) => {
-      const deployedNetwork = FundingCreatorContract.networks[networkId];
-      const instance = new web3.eth.Contract(
-        FundingCreatorContract.abi,
+    $.getJSON("CrowdFunding.json", (CrowdFundingContract) => {
+      const deployedNetwork = CrowdFundingContract.networks[networkId];
+
+      var instance = new web3.eth.Contract(
+        CrowdFundingContract.abi,
         deployedNetwork && deployedNetwork.address
       );
-      console.log(instance.methods.createFunding);
     });
   });
 });
+
+
+
+
+

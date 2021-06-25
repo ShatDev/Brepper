@@ -2,14 +2,7 @@
 
 pragma solidity >=0.6.0 <0.9.0;
 
-contract FundingCreator {
-    CrowdFunding[] public fundings;
-    
-    function createFunding(uint inputGoal, uint inputDeadline) public {
-        CrowdFunding newFunding = new CrowdFunding(inputGoal, inputDeadline, msg.sender);
-        fundings.push(newFunding);
-    }
-}
+
 
 contract CrowdFunding {
     
@@ -21,10 +14,8 @@ contract CrowdFunding {
     uint public deadline;
     uint public goal;
     uint public raisedAmount;
-    mapping(uint => Request) public requests;
-    uint public numRequests;
-
-    struct Request {
+    
+    struct Request{
         string description;
         address payable recipient;
         uint value;
@@ -37,14 +28,21 @@ contract CrowdFunding {
     event CreateRequestEvent(string _description, address _recipient, uint _value);
     event MakePaymentEvent(address _recipient, uint _value);
     
-    constructor(uint _goal, uint _deadline, address eoa) public {
+    
+    mapping(uint => Request) public requests;
+
+    uint public numRequests;
+    
+    constructor(uint _goal, uint _deadline) public {
         goal = _goal * (1 ether);
         deadline = block.timestamp + _deadline;
-        admin = eoa;
+        admin = msg.sender;
         
         minimumContribution = 100 wei;
     }
     
+    
+
     function contribute() public payable {
         require(block.timestamp < deadline, "deadline has passed!");
         require(msg.value >= minimumContribution, "Minimum Contribution Not Met!");

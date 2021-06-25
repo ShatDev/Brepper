@@ -183,6 +183,9 @@ body{
      grid-area: menu;
      box-shadow: 1px 2px 4px 1px rgb(0, 0, 0, 0.4);
 }
+a {
+     color: var(--accent-color);
+}
 .contributions-div h4 {
      color: rgb(224, 83, 83);
 }
@@ -226,19 +229,20 @@ body{
      grid-area: footer;
      height:  400px;
      border-radius: 10px;
-     display: grid;
-
-     grid-gap: 10px;
      padding: 20px 40px;
 }
-.doc-title{
- 
-
+.footer-div h2{
+     font-size: 20px;
 }
-.doc-img{
-     margin-top: 80px;
- 
-     height: 100px;
-     width: 50px;
- 
+.footer-div img{
+    display: inline;
+     height: 300px;
+     width: 200px;
+}
+
+.links {
+     text-decoration: none;
+     color:white;
+     font-size : 20px;
+     background-color: rgb(2, 238, 255);
 }

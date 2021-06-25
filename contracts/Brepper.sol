@@ -57,9 +57,7 @@ contract CrowdFunding {
         return address(this).balance;
     }
     
-    // Refund Money
 
-    
         modifier onlyAdmin() {
         require(msg.sender == admin,"Only Admin Can Call This Function!");
         _;
@@ -72,5 +70,4 @@ contract CrowdFunding {
         
     }
     
-
 }

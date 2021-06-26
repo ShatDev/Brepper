@@ -7,6 +7,10 @@ app.use(express.static("public"));
 app.get("/", function(req, res) {
   res.sendFile(__dirname + "/index.html");
 });
+
+app.get("/create", function(req, res) {
+  res.sendFile(__dirname + "/public/CreateFund.html")
+})
 app.get("/CrowdFunding.json" , function(req,res) {
   res.sendFile(__dirname + "/build/contracts/CrowdFunding.json")
 })

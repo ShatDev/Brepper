@@ -4,8 +4,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
 :root {
-     --background-color : white;
-     --secondary-color : whitesmoke;
+     --background-color : whitesmoke;
+     --secondary-color : rgb(0, 0, 0);
      --accent-color: rgb(2, 238, 255);
      --cute-font :   'Rubik', sans-serif;
 }
@@ -15,7 +15,9 @@ body{
      font-family: 'Rubik', sans-serif;
    
 }
-
+a{
+     text-decoration: none;
+}
 /* Navbar */
 #navbar {
      position:sticky;
@@ -30,6 +32,7 @@ body{
      font-family: 'Yanone Kaffeesatz', sans-serif;
      font-size: 28px;
      display: inline-block;
+     color: rgb(255, 255, 19);
 }  
 
  .navbar-left {
@@ -111,7 +114,7 @@ body{
      'main main main right right right'
      'footer footer footer footer footer footer';
      grid-gap: 10px;
-     background-color: var(--secondary-color);
+     background-color: var(--primary-color);
      padding: 20px;
     
      margin: 10px 50px ;
@@ -139,19 +142,19 @@ body{
 
 }
 .fundraiser-details button {
-     font-family: var(--cute-font);
-     font-weight: bold;
-     color: white;
-     letter-spacing: 2px;
-     display: block;
-     width: 100%;
-     margin-bottom: 10px;
-     cursor: pointer;
-     border-radius: 10px;
-     height:  40px;
-     border-style: none;
-     box-shadow: 1px 2px 2px 1px rgba(63, 48, 48, 0.3);
-     transition-duration: 0.2s;
+      font-family: var(--cute-font);
+      font-weight: bold;
+      color: white;
+      letter-spacing: 2px;
+      display: block;
+       width: 100%;
+      margin-bottom: 10px;
+      cursor: pointer;
+      border-radius: 10px;
+      height:  40px;
+      border-style: none;
+      box-shadow: 1px 2px 2px 1px rgba(63, 48, 48, 0.3);
+      transition-duration: 0.2s;
 }
 .contribute-button{
       background-color: var(--accent-color) ;
@@ -173,7 +176,7 @@ body{
      background-color: rgb(207, 201, 201);
      margin-top: 0;
      font-size: 20px;
- text-align: center;
+     text-align: center;
 
 }
 .contributions-div{
@@ -224,7 +227,7 @@ a {
 /* Footer-div */
 
 .footer-div{
-     background-color: rgb(224, 223, 223);
+     background-color: var(--accent-color);
      box-shadow: 1px 2px 4px 1px rgb(0, 0, 0, 0.4);
      grid-area: footer;
      height:  400px;
@@ -244,5 +247,87 @@ a {
      text-decoration: none;
      color:white;
      font-size : 20px;
-     background-color: rgb(2, 238, 255);
+     background-color: var(--accent-color);
+}
+input[type=number]::-webkit-outer-spin-button { 
+     -webkit-appearance: none; 
+     margin: 0; 
+}
+
+
+/* Create Fundraiser Form */
+label {
+     display: block;
+     margin-top: 30px;
+     margin-bottom : 6px;
+}
+.create-form {
+     display: flexbox;
+}
+.form-div p {
+     font-size: small;
+     margin-top : 5px;
+}
+.form-div {
+     box-shadow: 2px 2px 4px 2px rgb(0, 0, 0, 0.4);
+     width: 40%;
+     margin-left: auto;
+     margin-right: auto;
+     display: flex;
+     justify-content: center;
+     height: 750px;
+}
+.create-form h2 {
+     text-align : center;  
+}
+.form-div textarea {
+     resize: none;
+}
+.form-div input{
+     height: 20px;
+}
+.form-div button {
+     height: 30px;
+     width: 100%;
+     height: 40px;
+     margin-top: 40px;
+     cursor: pointer;
+     font-family: 'Rubik', sans-serif;
+     font-weight: bold;
+     letter-spacing: 2px;
+     transition-duration: 0.2s;
+     background-color: rgb(37, 225, 238);
+     border-radius: 10px;  
+     border-style: solid;  
+}
+.form-div button:hover {
+    background-color: var(--accent-color);
+    box-shadow:1px 1px 4px 2px rgb(0, 0, 0, 0.2) ;
+}
+.input{
+     width: 100%;
+     border-radius: 5px;
+    border-style: solid ;
+     font-family: var(--cute-font);
+     outline: none;
+     transition-duration: 0.1s;
+     padding: 10px;
+}
+
+.input:focus{
+     border: 2px solid rgb(20, 20, 20);
+}
+
+.input::placeholder{
+     font-family : var(--cute-font);
+}
+
+#funding-goal {
+     width: 50%;
+     display: inline;
+}
+#currency {
+     outline: none;
+     padding: 1px;
+     font-family: var(--cute-font);
 }

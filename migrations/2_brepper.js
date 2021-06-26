@@ -1,9 +1,9 @@
-const CrowdFunding = artifacts.require("CrowdFunding");
+const FundingCreator = artifacts.require("FundingCreator");
 
 
 module.exports = async (deployer) => {
   try {
-    await deployer.deploy(CrowdFunding , 4 , 400);
+    await deployer.deploy(FundingCreator , 4 , 400);
   } catch (err) {
     console.error(err);
   }

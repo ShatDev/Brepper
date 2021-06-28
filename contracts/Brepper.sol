@@ -3,11 +3,17 @@
 pragma solidity >=0.6.0 <0.9.0;
 
 contract FundingCreator {
-    CrowdFunding[] public fundings;
+    mapping(address => CrowdFunding) public fundings;
     
-    function createFunding(uint inputGoal, uint inputDeadline) public {
+    function createFunding(uint inputGoal, uint inputDeadline) public returns (address) {
         CrowdFunding newFunding = new CrowdFunding(inputGoal, inputDeadline, msg.sender);
-        fundings.push(newFunding);
+        address add = address(newFunding);
+        fundings[add] = newFunding;
+        return add;
+    }
+
+     function getFundingContract(address contractAddress) public view returns (CrowdFunding) {
+        return fundings[contractAddress];
     }
 }
 

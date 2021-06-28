@@ -11,6 +11,8 @@ const getWeb3 = () =>
     }
   });
 
+var account
+
 window.addEventListener('load', () => {
   getWeb3().then(async (web3) => {
     const networkId = await web3.eth.net.getId();
@@ -21,19 +23,16 @@ window.addEventListener('load', () => {
       "0x284D10E9cfFE48b5A41eB0a9F400E9881b6a2202"
       );
       window.instance = instance;
-      console.log(instance.methods.createFunding);
-    
     });
+    if (web3.eth.accounts[0] !== account) {
+      account = web3.eth.accounts[0];
+      console.log(account);
+      // below method needs to be defined
+      //updateInterface();
+    }
   });
 });
-var accountInterval = setInterval(function() {
-  if (web3.eth.accounts[0] !== account) {
-    account = web3.eth.accounts[0];
-    updateInterface();
-  }
-}, 100);
 
-const form = document.querySelector("#create-form");
 const createButton = document.getElementById("create-button");
 const goal = document.getElementById("funding-goal")
 
@@ -44,15 +43,16 @@ const getAccounts = async () => {
   return await window.ethereum.request({ method: 'eth_requestAccounts' })
 }
 
-// use the above function in your event listener:
-form.addEventListener('submit', async e => {
-  e.preventDefault()
+const createFundRaiser = async function(event) {
+  event.preventDefault();
   // get up to date account data when you already submit the form
   const [account] = await getAccounts() // just destructuring result to get the first account
-  instance.methods.createFunding(goal.value, 40000).send({ from: account }).then((value) => {console.log(value)})
-
+  const fundRaiser = await instance.methods.createFunding(goal.value, 40000).send({from: account})
+  console.log(fundRaiser)
+  location.replace("/fund.html?contract=" + fundRaiser.to);
   noOfContracts++;
-})
+  return false;
+}
  
 const getFundAddress = async (i) => { return await instance.methods.fundings(noOfContracts).call() }
 

@@ -20,7 +20,7 @@ window.addEventListener('load', () => {
       const deployedNetwork = FundingCreatorContract.networks[networkId];
       const instance = new web3.eth.Contract(
         FundingCreatorContract.abi,
-      "0x284D10E9cfFE48b5A41eB0a9F400E9881b6a2202"
+      deployedNetwork && deployedNetwork.address
       );
       window.instance = instance;
     });
@@ -47,10 +47,9 @@ const createFundRaiser = async function(event) {
   event.preventDefault();
   // get up to date account data when you already submit the form
   const [account] = await getAccounts() // just destructuring result to get the first account
-  const fundRaiser = await instance.methods.createFunding(goal.value, 40000).send({from: account})
-  console.log(fundRaiser)
-  location.replace("/fund.html?contract=" + fundRaiser.to);
-  noOfContracts++;
+  await instance.methods.createFunding(goal.value, 40000).send({from: account});
+  const val = await instance.methods.getFundingIndex().call();
+  location.replace("/fund.html?index=" + val);
   return false;
 }
  

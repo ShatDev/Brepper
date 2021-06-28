@@ -20,27 +20,16 @@ window.addEventListener('load', () => {
       const deployedNetwork = FundingCreatorContract.networks[networkId];
       const instance = new web3.eth.Contract(
         FundingCreatorContract.abi,
-      "0x284D10E9cfFE48b5A41eB0a9F400E9881b6a2202"
+        deployedNetwork && deployedNetwork.address
       );
       const urlSearchParams = new URLSearchParams(window.location.search);
       const params = Object.fromEntries(urlSearchParams.entries());
         (async () => {
           const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' })
-          const fundRaiser = await instance.methods.getFundingContract(params.contract).send({from: account})
-          console.log(fundRaiser)
-          const fundRaiserInstance = new web3.eth.Contract(
-            fundRaiser,
-            params.contract
-          );
-          console.log(fundRaiserInstance)
-          window.fundRaiserInstance = fundRaiserInstance;
+          const val = await instance.methods.getFundingContract(params.index).call();
+          // here we need to get and show more details
+          console.log(val)
         })()
     });
-    if (web3.eth.accounts[0] !== account) {
-      account = web3.eth.accounts[0];
-      console.log(account);
-      // below method needs to be defined
-      //updateInterface();
-    }
   });
 });

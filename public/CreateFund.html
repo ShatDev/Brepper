@@ -1,96 +1,91 @@
 <!DOCTYPE html>
 <html lang="en" translate="no">
-<head> 
+
+<head>
   <title>MangoShakes</title>
-<script src="//code.jquery.com/jquery-1.10.2.js"></script> 
-<meta charset="utf-8" />
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="css/styles.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.3.6/web3.min.js" integrity="sha512-jMEcX0Bev3VsCrACqEM3BFZvAMFXJSuTsMu0SttkAdMjquip6p3Oty5bbXrfg4T8n4g5BQYkGKxzLsrSqQgLUQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<link rel="shortcut icon" href="/img/mango.png" type="image/x-icon">
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="theme-color" content="#000000" />
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <meta charset="utf-8" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.3.6/web3.min.js"
+    integrity="sha512-jMEcX0Bev3VsCrACqEM3BFZvAMFXJSuTsMu0SttkAdMjquip6p3Oty5bbXrfg4T8n4g5BQYkGKxzLsrSqQgLUQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="shortcut icon" href="/img/mango.png" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
 </head>
+
 <body>
-<noscript>You need to enable JavaScript to run this app.</noscript>
-<div id="root"></div>
-<!--
-This HTML file is a template.
-If you open it directly in the browser, you will see an empty page.
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
 
-You can add webfonts, meta tags, or analytics to this file.
-The build step will place the bundled scripts into the <body> tag.
+  <!-- Navbar -->
+  <div id="navbar">
+    <div class="navbar-right ">
+      <h2 class="nav-logo"><img class="mango-logo" src="img/mango.png">MangoShakes</h2>
+    </div>
+    <div class="navbar-left">
+      <h4 class="home-page buttons"><a href="/">Home </a></h4>
+      <h4 class="about buttons">How it Works</h4>
+      <h4 class="new-fundraiser buttons"><a href="/create">Create a fundraiser</a></h4>
+    </div>
+    <div class="user-dropdown">
 
-To begin the development, run `npm start` or `yarn start`.
-To create a production bundle, use `npm run build` or `yarn build`.
--->
+      <h4 class="user"><i class="fas fa-user-circle"></i><span id="user"> 0xB0230....3654</span></h4>
 
+      <div class="dropdown-content">
+        <a>My Fundraisers</a>
+        <a>My Contributions</a>
+        <a>Request and Votes</a>
+      </div>
 
-
-
-<!-- Navbar -->
-<div id="navbar">
-<div class="navbar-right ">
-  <h2 class="nav-logo"><img class ="mango-logo"src="img/mango.png">MangoShakes</h2>
-</div>
-<div class="navbar-left">
-    <h4 class="home-page buttons"><a href="/">Home </a></h4>
-   <h4 class="about buttons">How it Works</h4>
-   <h4 class="new-fundraiser buttons"><a href="/create">Create a fundraiser</a></h4>
-</div>
-<div class="user-dropdown">
-  
- <h4 class="user"><i class="fas fa-user-circle"></i><span id="user"> 0xB0230....3654</span></h4>
- 
- <div class="dropdown-content" >
-    <a>My Fundraisers</a>
-    <a>My Contributions</a>
-    <a>Request and Votes</a>
- </div>
-
-</div>
-</div>  
-
-<!-- Create Funding  -->
-<div class="create-div">
-  <h2>Create A Fundraiser</h2> 
-  <div class="form-div">
-     
-    <form id="create-form" onsubmit="return createFundRaiser(event)">
-
-    <label for="funding-head">Title :</label>
-    <input class="input" value="Help me do " required type="text" id="funding-head" placeholder="Give a title to your fundraiser!">
-    
-    <label for="funding-description">Description :</label>
-    <textarea name="input" minlength="200" placeholder="Describe your purpose in detail" class="input" id="funding-description" cols="30" rows="10" required></textarea>
-    <p style = "font-size:small;">A good description can increase your chances of getting contributions!</p>
-
-    <label for="funding-goal">Goal:</label>
-    <input class="input" id="funding-goal" type="number" required>
-
-  <select name="currency" id="currency">
-    <option value="dollars">Dollars</option>
-    <option value="ethers">Ethers</option>
-  </select>
-
-  <label for="other-links">Other Platform Links - optional</label>
-  <input class="input"  type="text" id="funding-head"   placeholder="Link to the fundraiser">
-  <p style = "font-size: 13px; width:435px; word-wrap:break-word;">We highly recommend you to create the same fundraiser on other platforms
-     like <a href= "https://www.gofundme.com/" target="_blank">GoFundMe</a> , <a target="_blank" href="https://gogetfunding.com/">gogetfunding</a> or any other reputed global/local website to ensure trust from the contributors.</p>
-
-    
-    <button type="submit" id="create-button">Create Fundraiser</button>
-    </form>
+    </div>
   </div>
- </div>
 
+  <!-- Create Funding  -->
+  <div class="create-div">
+    <h2>Create A Fundraiser</h2>
+    <div class="form-div">
 
+      <form id="create-form" onsubmit="return createFundRaiser(event)">
 
- <script src="js/index.js"></script>
- </body>
- </html>
+        <label for="funding-head">Title :</label>
+        <input class="input" value="Help me do " required type="text" id="funding-head"
+          placeholder="Give a title to your fundraiser!">
+
+        <label for="funding-description">Description :</label>
+        <textarea name="input" minlength="200" placeholder="Describe your purpose in detail" class="input"
+          id="funding-description" cols="30" rows="10" required></textarea>
+        <p style="font-size:small;">A good description can increase your chances of getting contributions!</p>
+
+        <label for="funding-goal">Goal:</label>
+        <input class="input" id="funding-goal" type="number" required>
+
+        <select name="currency" id="currency">
+          <option value="dollars">Dollars</option>
+          <option value="ethers">Ethers</option>
+        </select>
+
+        <label for="other-links">Other Platform Links - optional</label>
+        <input class="input" type="text" id="funding-head" placeholder="Link to the fundraiser">
+        <p style="font-size: 13px; width:435px; word-wrap:break-word;">We highly recommend you to create the same
+          fundraiser on other platforms
+          like <a href="https://www.gofundme.com/" target="_blank">GoFundMe</a> , <a target="_blank"
+            href="https://gogetfunding.com/">gogetfunding</a> or any other reputed global/local website to ensure trust
+          from the contributors.</p>
+
+        <button type="submit" id="create-button">Create Fundraiser</button>
+      </form>
+    </div>
+  </div>
+  <script src="js/web3.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>

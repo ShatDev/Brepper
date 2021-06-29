@@ -1,20 +1,5 @@
-const getWeb3 = () =>
-  new Promise(async (resolve, reject) => {
-    if (window.ethereum) {
-      const web3 = new Web3(window.ethereum);
-      try {
-        await window.ethereum.send('eth_requestAccounts');
-        resolve(web3);
-      } catch (error) {
-        reject(error);
-      }
-    }
-  });
-
-var account
-
 window.addEventListener('load', () => {
-  getWeb3().then(async (web3) => {
+  window.getWeb3().then(async (web3) => {
     const networkId = await web3.eth.net.getId();
     $.getJSON("/FundingCreator.json", (FundingCreatorContract) => {
       $.getJSON("/CrowdFunding.json", (CrowdFundingContract) => {
@@ -31,7 +16,6 @@ window.addEventListener('load', () => {
             CrowdFundingContract.abi,
             address
           );
-          console.log(fundraiserInstance)
           const goal = await fundraiserInstance.methods.goal().call()
           document.getElementById('goal_value').innerText = goal
           const deadline = await fundraiserInstance.methods.deadline().call()

@@ -25,7 +25,6 @@ window.addEventListener('load', () => {
       const urlSearchParams = new URLSearchParams(window.location.search);
       const params = Object.fromEntries(urlSearchParams.entries());
         (async () => {
-          const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' })
           const val = await instance.methods.getFundingContract(params.index).call();
           // here we need to get and show more details
           console.log(val)

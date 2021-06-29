@@ -22,11 +22,13 @@ window.addEventListener('load', () => {
         FundingCreatorContract.abi,
       deployedNetwork && deployedNetwork.address
       );
+      instance.events.FundraiserCreated({}, function(_, event){
+        location.replace("/fund.html?index=" + event.returnValues.fundraiserIndex);
+      })
       window.instance = instance;
     });
     if (web3.eth.accounts[0] !== account) {
       account = web3.eth.accounts[0];
-      console.log(account);
       // below method needs to be defined
       //updateInterface();
     }
@@ -47,9 +49,7 @@ const createFundRaiser = async function(event) {
   event.preventDefault();
   // get up to date account data when you already submit the form
   const [account] = await getAccounts() // just destructuring result to get the first account
-  await instance.methods.createFunding(goal.value, 40000).send({from: account});
-  const val = await instance.methods.getFundingIndex().call();
-  location.replace("/fund.html?index=" + val);
+  const result = await instance.methods.createFunding(goal.value, 40000).send({from: account});
   return false;
 }
  

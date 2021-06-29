@@ -18,6 +18,11 @@ contract FundingCreator {
         CrowdFunding funding = fundings[_fundingindex];
         return funding.goal();
     }
+
+     function getFundingContractAddress(uint _fundingindex) public view returns (address) {
+        CrowdFunding funding = fundings[_fundingindex];
+        return address(funding);
+    }
 }
 
 contract CrowdFunding {

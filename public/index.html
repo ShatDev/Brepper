@@ -47,9 +47,7 @@
         pellentesque eget.</p>
     </div>
     <div class="fundraiser-details">
-<div class="share-modal">
-
-</div>
+       <button id="withdraw-button" class="hidden">Withdraw Funds</button>
       <button class="share-button"><a class="related-documents">Related Documents</a></button>
       
       <h5>Raised <span class="raised"></span> Out of <span class="goal"></span> Ethers </h5>
@@ -61,10 +59,16 @@
       </div>
        
       <h4>Only <span class="time-left"> 10 </span> days left...</h4>
-      <input class="input" id="contribute-amount" type="number" placeholder="Contribution Amount" required>
+
+      <!-- Contributions -->
+      <input class="input" id="contribute-amount" type="number" min=0  placeholder="Contribution Amount"  onkeypress="return event.charCode != 45" required>
       <button id="contribute-button">Contribute</button>
+
+      <!-- Links -->
       <p>Can't contribute in Crypto Currencies?</p>
       <p>Contribute on <a href="">Ketto</a> , <a href="">GoFundMe</a></p>
+
+      <!-- Implementing Latest Contributions  -->
       <div class="contributions-div">
         <h2>Latest Contributions</h2>
         <h4 class="contribution">0xB0230....3654 : <span class="contribution-amount">0.001 ether (100$)</span></h4>

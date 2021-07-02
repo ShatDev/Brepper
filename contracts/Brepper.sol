@@ -29,7 +29,7 @@ contract CrowdFunding {
     
     mapping(address => uint) public contributors;
     
-    address public admin;
+    address payable public admin;
     uint public numberOfContributors;
     uint public minimumContribution;
     uint public deadline;
@@ -38,13 +38,13 @@ contract CrowdFunding {
 
     
     event ContributeEvent(address _sender, uint _value);
-    event fundsWithdrawn(string _description, address _recipient, uint _value);
+    event fundsWithdrawn( uint _value);
 
     
     constructor(uint _goal, uint _deadline, address eoa)  {
         goal = _goal * (1 ether);
         deadline = block.timestamp + _deadline;
-        admin = eoa;
+        admin = payable(eoa);
         
         minimumContribution = 100 wei;
     }
@@ -77,10 +77,10 @@ contract CrowdFunding {
         _;
     }
     
-    function withdrawFunds(string memory _description, address payable _recipient, uint _value ) public onlyAdmin{
+    function withdrawFunds(uint _value ) public onlyAdmin{
         require(raisedAmount >= goal);
-       _recipient.transfer(address(this).balance);
-        emit fundsWithdrawn(_description, _recipient, _value);
+       admin.transfer(address(this).balance);
+        emit fundsWithdrawn( _value);
         
     }
     

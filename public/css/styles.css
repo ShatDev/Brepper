@@ -3,6 +3,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
+
+.hidden {
+     display: none !important;
+}
 :root {
      --background-color : whitesmoke;
      --secondary-color : rgb(0, 0, 0);
@@ -177,6 +181,10 @@ a{
 .share-button:hover{
      box-shadow: 1px 2px 2px 2px rgb(0, 0, 0, 0.4);
 }
+#withdraw-button {
+     background-color: rgb(72, 192, 17);
+
+}
 
 /* Contributions Div */
 
@@ -206,19 +214,19 @@ a {
 /* Contributions Progress  */
 .progress-container {
      background: #fff;
-     border-radius: 5px;
+     border-radius: 8px;
      cursor: default;
-     margin: 40px 20px;
-     height: 5px;
+     margin: 10px 20px;
+     height: 10px;
      width: 90%;
    }
    
    .progress {
-     background: #242323;
+     background: var(--accent-color);
      border-radius: 5px;
      height: 100%;
      /* change this to show progress */
-     width: 30%;
+     width: 0;
      transition: width 0.1s linear;
    }
    .duration-wrapper {
@@ -341,3 +349,4 @@ label {
      padding: 1px;
      font-family: var(--cute-font);
 }
+

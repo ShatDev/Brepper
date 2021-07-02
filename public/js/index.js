@@ -10,7 +10,7 @@ window.addEventListener('load', () => {
       deployedNetwork && deployedNetwork.address
       );
       instance.events.FundraiserCreated({}, function(_, event){
-        location.replace("/fund.html?index=" + event.returnValues.fundraiserIndex);
+        location.replace("/index.html?index=" + event.returnValues.fundraiserIndex);
       })
       window.instance = instance;
     });
@@ -36,7 +36,7 @@ const createFundRaiser = async function(event) {
   event.preventDefault();
   // get up to date account data when you already submit the form
   const [account] = await getAccounts() // just destructuring result to get the first account
-  const result = await instance.methods.createFunding(goal.value, 40000).send({from: account});
+  const result = await instance.methods.createFunding(goal.value, 1728000).send({from: account});
   return false;
 }
  
@@ -60,3 +60,6 @@ const getFundAddress = async (i) => { return await instance.methods.fundings(noO
 window.ethereum.on('accountsChanged', function (accounts) {
   // Time to reload your interface with accounts[0]!
 })
+
+
+// Share Modal

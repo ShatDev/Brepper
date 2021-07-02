@@ -1,53 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" translate="no">
 
-<head>
-  <title>Brepper</title>
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <meta charset="utf-8" />
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.3.6/web3.min.js"
-    integrity="sha512-jMEcX0Bev3VsCrACqEM3BFZvAMFXJSuTsMu0SttkAdMjquip6p3Oty5bbXrfg4T8n4g5BQYkGKxzLsrSqQgLUQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <link rel="shortcut icon" href="/img/mango.png" type="image/x-icon">
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#000000" />
-</head>
+  <script>
+  $(function(){
 
+  $("#header").load("header.html"); 
+  $("#navbar").load("nav.html"); 
+});
+
+  </script>
+  <!-- header -->
+<div id="header"></div>
+<header><script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=60de1ed76d3e570012a5977a&product=sticky-share-buttons" async="async"></script></header>
 <body>
+  <div class="sharethis-sticky-share-buttons"></div>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
 
   <!-- Navbar -->
-  <div id="navbar">
-    <div class="navbar-right ">
-      <h2 class="nav-logo"><img class="mango-logo" src="img/mango.png">MangoShakes</h2>
-    </div>
-    <div class="navbar-left">
-      <h4 class="home-page buttons"><a href="/">Home</a></h4>
-      <h4 class="about buttons">How it Works</h4>
-      <h4 class="new-fundraiser buttons"><a href="/create">Create a fundraiser</a></h4>
-    </div>
-    <div class="user-dropdown">
-
-      <h4 class="user"><i class="fas fa-user-circle"></i><span id="user"> 0xB0230....3654</span></h4>
-
-      <div class="dropdown-content">
-        <a>My Fundraisers</a>
-        <a>My Contributions</a>
-        <a>Request and Votes</a>
-      </div>
-
-    </div>
-  </div>
+  <div id="navbar"></div>
 
   <!-- Fundraiser Body -->
 
@@ -75,20 +47,22 @@
         pellentesque eget.</p>
     </div>
     <div class="fundraiser-details">
-      <button class="share-button">Share</button>
-      <h4>Raised: 100$</h4>
-      <h5>Out of <span>300$</span> goal </h5>
+<div class="share-modal">
+
+</div>
+      <button class="share-button"><a class="related-documents">Related Documents</a></button>
+      
+      <h5>Raised <span class="raised"></span> Out of <span class="goal"></span> Ethers </h5>
       <div class="progress-container" id="progress-container">
         <div class="progress" id="progress">
           <div class="duration-wrapper">
-            <span id="current-time">100$</span>
-            <span id="duration">300$</span>
           </div>
         </div>
       </div>
-      <div>
-      </div>
-      <button class="contribute-button">Contribute</button>
+       
+      <h4>Only <span class="time-left"> 10 </span> days left...</h4>
+      <input class="input" id="contribute-amount" type="number" placeholder="Contribution Amount" required>
+      <button id="contribute-button">Contribute</button>
       <p>Can't contribute in Crypto Currencies?</p>
       <p>Contribute on <a href="">Ketto</a> , <a href="">GoFundMe</a></p>
       <div class="contributions-div">
@@ -113,6 +87,8 @@
 
     <script src="js/web3.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/fund.js"></script>
+    
 </body>
 
 </html>

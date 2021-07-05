@@ -81,7 +81,6 @@ contract CrowdFunding {
         require(raisedAmount >= goal);
        admin.transfer(address(this).balance);
         emit fundsWithdrawn( _value);
-        
     }
     
 }

@@ -3,17 +3,26 @@
 
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script>
+ 
   $(function(){
 
   $("#header").load("header.html"); 
   $("#navbar").load("nav.html"); 
+
 });
 
   </script>
+<!-- 
+<div class="loader-wrapper">
+  <div class="loader">
+   <img src="loaders/infinity.svg" alt="">
+  </div> -->
+</div>
   <!-- header -->
 <div id="header"></div>
 <header><script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=60de1ed76d3e570012a5977a&product=sticky-share-buttons" async="async"></script></header>
 <body>
+  <div class="website">
   <div class="sharethis-sticky-share-buttons"></div>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
@@ -27,6 +36,8 @@
     <div class="header-div">
       <h2>Please Help Himalayas</h2>
     </div>
+
+
     <div class="main-div">
       <img class="fundraiser-img" src="img/test.jpg" alt="">
       <h2>Lorem ipsum </h2>
@@ -46,17 +57,32 @@
         feugiat nibh, a ullamcorper elit metus nec sapien. Mauris dignissim auctor tellus, at ultrices metus
         pellentesque eget.</p>
     </div>
+
+
     <div class="fundraiser-details">
        <button id="withdraw-button" class="hidden">Withdraw Funds</button>
       <button class="share-button"><a class="related-documents">Related Documents</a></button>
       
-      <h5>Raised <span class="raised"></span> Out of <span class="goal"></span> Ethers </h5>
       <div class="progress-container" id="progress-container">
         <div class="progress" id="progress">
+
+          <div class="identifiers">
+            <span>Raised</span>
+            <span>Goal</span>
+          </div>
+
           <div class="duration-wrapper">
+            <span class="raised raised-progress"></span>
+            <span class="goal goal-progress"></span>
+          </div>
+          
+          <div class="dollar-value-wrapper">
+            <span class="raised-dollars raised-progress"></span>
+            <span class="goal-dollars goal-progress"></span>
           </div>
         </div>
       </div>
+   
        
       <h4>Only <span class="time-left"> 10 </span> days left...</h4>
 
@@ -77,17 +103,10 @@
     </div>
 
     <div class="footer-div">
-      <h2>Related Documents</h2>
-      <img src="img/testDocuments.jpg" alt="">
-      <img src="img/testDocuments.jpg" alt="">
-      <img src="img/testDocuments.jpg" alt="">
+    
     </div>
-
-    <div class="link-div">
-      <h2>Can't Donate In CryptoCurrencies? Don't trust the fundraiser?</h2>
-      <h4>Find this fundraiser on other platforms:</h4>
-      <a class="links" target="_blank" href="ketto.com">Ketto</a>
-    </div>
+</div>
+ 
 
     <script src="js/web3.js"></script>
     <script src="js/index.js"></script>

@@ -1,38 +1,53 @@
+
+
+//fill values
 var goalElement = document.querySelectorAll('.goal')
 var raisedElement  = document.querySelectorAll('.raised')
+const raisedDollars  = document.querySelector(".raised-dollars")
+const goalDollars = document.querySelector(".goal-dollars")
+const loader = document.querySelector(".loader")
+//Buttons
 const donateButton = document.querySelector('#contribute-button')
 const withdrawButton = document.querySelector('#withdraw-button')
+
+
 const documentLink = document.querySelector("#doc-link")
 const progress = document.querySelector("#progress")
 let alertValue = false;
 
+// Get Ethereum price 
+const getPrices = async () => {
+  const url = `https://coingecko.p.rapidapi.com/simple/price?ids=ethereum&vs_currencies=USD`;
 
+  try {
+    const res = await fetch(url , {
+      "async": true,
+      "crossDomain": true,
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-key": "731cabf830msh06088b535cbc883p1cb288jsn7e8616efa3dc",
+        "x-rapidapi-host": "coingecko.p.rapidapi.com"
+       } });
+    const data = await res.json();
+    const cryptoData = data.ethereum.usd 
+    return cryptoData;
+  } catch (err) {
+    console.error(err);
+  }
+};
 
-//Currency Convertor ETH to USD 
+//convert from dollar to eth 
 async function toUSD(ethValue) {
-  const settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "https://coingecko.p.rapidapi.com/simple/price?ids=ethereum&vs_currencies=USD",
-    "method": "GET",
-    "headers": {
-      "x-rapidapi-key": "731cabf830msh06088b535cbc883p1cb288jsn7e8616efa3dc",
-      "x-rapidapi-host": "coingecko.p.rapidapi.com"
-    }
-  };
-  
-  $.ajax(settings).done(function (response) {
-    var price = response.ethereum.usd
-    return ethValue * price 
-  });
-
-  
+  var value = await getPrices() * ethValue
+  return value; 
 }
+
+
 // Create An Alert Function
 function createAlert(element ,prompt) {
   const p = document.createElement("p");
   p.innerText = prompt
-  element.appendChild(p)
+  document.querySelector("#contribute-amount").appendChild(p)
   alertValue = true;
 }
 
@@ -70,7 +85,19 @@ if (!urlValue){
 }
 
 
+// Loading function
+function loading() {
+  loader.hidden = false; 
+  document.querySelector(".website").hidden = true;
+}
+function complete() {
+  loader.hidden = true; 
+  document.querySelector(".website").hidden = false;
+}
+
+
 window.addEventListener('load', () => {
+
   window.getWeb3().then(async (web3) => {
     const networkId = await web3.eth.net.getId();
 
@@ -107,15 +134,18 @@ window.addEventListener('load', () => {
           } else {
             console.log("Not Admin")
           }; 
+//Withdraw Button 
+          withdrawButton.addEventListener("click", async function() {
+            await fundraiserInstance.methods.withdrawFunds(7).send({from : adminAcc, value : web3.utils.toWei("1")});
+          })
 
-
+           
 //Display the goal and the amount raised
           const goal = await fundraiserInstance.methods.goal().call()
           for(var i = 0 ; i < goalElement.length ; i++ ) {
-            goalElement[i].innerText = web3.utils.fromWei(goal)
+            goalElement[i].innerText = web3.utils.fromWei(goal) + " Ethers"
           }
-          const dollarGoal = await toUSD(goal);
-          console.log(dollarGoal)
+ 
 
           // const deadline = await fundraiserInstance.methods.deadline().call()
           // document.querySelector('.deadline').innerText = deadline
@@ -124,43 +154,41 @@ window.addEventListener('load', () => {
           const raisedAmount = await fundraiserInstance.methods.raisedAmount().call()
 
           for(var r = 0; r < raisedElement.length ; r++){
-            raisedElement[r].innerText = web3.utils.fromWei(raisedAmount)
+            raisedElement[r].innerText = web3.utils.fromWei(raisedAmount) + " Ethers"
           }  
  //contribute amount value     
          const contributeAmount = document.querySelector("#contribute-amount");
+//setting up value in dollars  
+          var raisedDollarValue =  await toUSD(web3.utils.fromWei(raisedAmount))
+          raisedDollars.innerText = raisedDollarValue.toFixed(2) + "$"
+          var goalDollarValue = await toUSD(web3.utils.fromWei(goal))
+          goalDollars.innerText = goalDollarValue.toFixed(2) + "$"
 
+// Donate Button 
 
-// Donate Button
+           var clicks = 0;
+
           donateButton.addEventListener("click", async function() {
-            const [account] = await getAccounts()
+           
 
-            if(contributeAmount.value == null){
-              alert("please enter a value");
+            if (clicks == 0){
+              $("#contribute-amount").slideDown()
+            } else{
+              const [account] = await getAccounts()
+
+              if(contributeAmount.value == null){
+                console.log("null value")
+                createAlert(contributeAmount, "Please enter a value")
+               } else {
+                fundraiserInstance.methods.contribute().send({from : account , value: web3.utils.toWei(contributeAmount.value)})
+               }
             }
-            fundraiserInstance.methods.contribute().send({from : account , value: web3.utils.toWei(contributeAmount.value)})
+            clicks++;         
           })
 
 //display progress percentage
            let progressPercent =  (raisedAmount / goal) * 100
            progress.style.width = progressPercent + "%"
-// Verify Url in fundraiser Form
-
-           let urlValue = documentLink.value.toLowerCase()
-
-          if (!urlValue.includes('https://') && !urlValue.includes('http://')) {
-              urlValue = `https://${urlValue}`; 
-            }
-
-            validate( urlValue);
-
-             if (!validate(urlValue)){
-               return false;
-             }
-
-
-         document.querySelector(".related-documents").setAttribute("href", documentLink.value)
-
-
 
 
         })()

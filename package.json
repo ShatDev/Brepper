@@ -14,7 +14,8 @@
   "license": "MIT",
   "dependencies": {
     "@truffle/hdwallet-provider": "^1.4.1",
-    "dotenv": "^8.6.0"
+    "dotenv": "^8.6.0",
+    "ipfs-mini": "^1.1.5"
   },
   "devDependencies": {
     "chai": "^4.3.0",

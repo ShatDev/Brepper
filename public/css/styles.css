@@ -2,17 +2,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+SC:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
 .hidden {
      display: none !important;
 }
 :root {
      --background-color : whitesmoke;
-     --secondary-color : rgb(0, 0, 0);
+     --secondary-color : white;
      --accent-color: rgb(2, 238, 255);
-     --cute-font :   'Rubik', sans-serif;
+/* Fonts */
+     --default :'Montserrat', sans-serif;
+     --cute-font : 'Rubik', sans-serif;
+     --robot : 'Roboto', sans-serif;
+     --yanone : 'yanone', sans-serif;
+     --another-cute-font : 'Varela Round', sans-serif;
+     
 }
+
+
+
 body{
      margin: 0;
      background-color: var(--background-color);
@@ -21,12 +32,14 @@ body{
 }
 a{
      text-decoration: none;
-}
+     
+} 
+
 /* Navbar */
 #navbar {
      position:sticky;
      padding: 0.2px 0 0.1px 40px;
-     box-shadow: 1px 1px 20px 2px rgb(0, 0, 0, 0.4);
+     box-shadow: -70px -11px 19px 0px rgb(0 0 0 / 40%);
      cursor: default;
      background-color: var(--secondary-color);
     
@@ -39,32 +52,42 @@ a{
      font-family: 'Yanone Kaffeesatz', sans-serif;
      font-size: 28px;
      display: inline-block;
-     color: rgb(255, 255, 19);
+     color: rgb(148, 148, 12);
 }  
+.mango-logo{
+     transition-duration: 0.2s;
+}
+.mango-logo:hover{
+     cursor: pointer;
+     
+     transform : rotate(-20deg)
+}
 
  .navbar-left {
      position: absolute;
-     right: 250px;
-     top : 6px;
+     display: flex;
+     right: 35%;
+     top : 30px;
 
  }
  /* Navbar Dropdown */
 
 .user-dropdown{
      position: absolute;
-     right: 80px;
-     top : 2px;
+     right: 60px;
+     top : 4px;
+     border-radius : 20px;
 
 }
 .user {
      color: black !important;
      display: inline-block;
-     margin-left: 15px;
+     margin-left:30px;
      cursor: pointer;
      transition-duration: 0.1s;
-
+      
      background-color: var(--background-color);
-     border-radius: 10px;
+     border-radius: 20px;
      padding: 5px;
      box-shadow: 1px 2px 4px 1px rgb(0, 0, 0, 0.4);
 }
@@ -79,6 +102,7 @@ a{
      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
      padding: 10px 0 10px 0;
      z-index: 1;
+     border-radius: 20px;
      right: 0;
 }
 
@@ -101,16 +125,19 @@ a{
 
 .buttons{
      display: inline-block;
-     margin-left: 20px;
-
-     color: turquoise;
+     margin-left: 40px;
+     color: rgb(0, 0, 0);
      cursor: pointer;
      transition-duration: 0.1s;
+     font-weight: bold;
 }
 .buttons:hover{
-     transform: translate(2px,2px);
+     color: rgb(24, 223, 230);
 }
-
+/* Loader Body */
+.loader-wrapper{
+     z-index: 1;
+}
 
 /* Fundraiser Body */
 
@@ -124,12 +151,12 @@ a{
      background-color: var(--primary-color);
      padding: 20px;
     
-     margin: 10px 50px ;
+     padding: 50px 50px;
      box-shadow: 1px 2px 4px 1px rgb(0, 0, 0, 0.4);
 }
 .header-div{
      grid-area: header;
-     font-family: 'Roboto', sans-serif;
+     font-family: var(--cute-font);
      text-align: center;
 }
 /* Main Div */
@@ -145,8 +172,12 @@ a{
 .fundraiser-details{
      grid-area: right;
      width: clamp(150px , 300px , 400px);
+     padding: 10px;
 
+}
 
+.fundraiser-details h5  {
+     font-family:  var(--another-cute-font);
 }
 .fundraiser-details button {
       font-family: var(--cute-font);
@@ -166,7 +197,8 @@ a{
 #contribute-amount {
      margin-bottom: 10px;
      margin-top: 10px;
-     width: 60%;
+     width: 90%;
+     display: none;
 }
 #contribute-button{
       background-color: var(--accent-color) ;
@@ -216,10 +248,17 @@ a {
      background: #fff;
      border-radius: 8px;
      cursor: default;
-     margin: 10px 20px;
+     margin-left: 14px;
+     margin-top: 80px;
+    margin-bottom: 72px;
      height: 10px;
      width: 90%;
    }
+   .progress-container span {
+     font-family: var(--another-cute-font) !important;
+     font-size: 1rem;
+     font-weight: bold;
+}
    
    .progress {
      background: var(--accent-color);
@@ -227,19 +266,28 @@ a {
      height: 100%;
      /* change this to show progress */
      width: 0;
+     max-width: 100%;
      transition: width 0.1s linear;
+   }
+   .identifiers {
+     position: relative;
+   bottom : 55px;
+     display: flex;
+     justify-content: space-between;  
    }
    .duration-wrapper {
      position: relative;
-     top: -25px;
+     bottom: 46px ;
      display: flex;
      justify-content: space-between;
    }
-   .duration-wrapper .goal {
-     margin-left: 185px;
-     
-    
-   }   
+   .dollar-value-wrapper {
+     position: relative;
+     bottom: 22px;
+     display: flex;
+     justify-content: space-between;
+   }
+   
 /* Footer-div */
 
 .footer-div{

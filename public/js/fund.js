@@ -96,8 +96,8 @@ function complete() {
 }
 
 
-window.addEventListener('load', () => {
-
+const connectFund = () => {
+  console.log('2')
   window.getWeb3().then(async (web3) => {
     const networkId = await web3.eth.net.getId();
 
@@ -195,4 +195,8 @@ window.addEventListener('load', () => {
       });
     });
   });
+}
+
+window.addEventListener('load', () => {
+  if (window.web3) connectFund()
 });

@@ -1,6 +1,7 @@
 var account
 
-window.addEventListener('load', () => {
+const connect =  () => {
+  console.log('1')
   window.getWeb3().then(async (web3) => {
     const networkId = await web3.eth.net.getId();
     $.getJSON("/FundingCreator.json", (FundingCreatorContract) => {
@@ -20,7 +21,7 @@ window.addEventListener('load', () => {
       //updateInterface();
     }
   });
-});
+}
 
 const createButton = document.getElementById("create-button");
 const goal = document.getElementById("funding-goal")
@@ -42,24 +43,9 @@ const createFundRaiser = async function(event) {
  
 const getFundAddress = async (i) => { return await instance.methods.fundings(noOfContracts).call() }
 
-// document.querySelector(".body-div").addEventListener("load", () =>{
-// getWeb3().then(async (web3) => {
-
-//   $.getJSON("/CrownFunding.json", (CrowdFunding) => {
-//     const fund = new web3.eth.Contract(
-//       CrowdFunding.abi,
-//     await getFundAddress(noOfContracts)
-//     );
-//     window.fund = fund;
-//     console.log(fund);
-  
-//   });
-// }); 
-// })
-
-window.ethereum.on('accountsChanged', function (accounts) {
-  // Time to reload your interface with accounts[0]!
-})
-
-
-// Share Modal
+window.addEventListener('load', () => {
+  if (window.web3) {
+    connect()
+    connectFund()
+  }
+});

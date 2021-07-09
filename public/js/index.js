@@ -230,9 +230,3 @@ const createFundRaiser = async function(event) {
 }
  
 const getFundAddress = async (i) => { return await instance.methods.fundings(noOfContracts).call() }
-
-window.addEventListener('load', () => {
-  if (window.web3Resolved) {
-    connect()
-  }
-});

@@ -53,38 +53,6 @@ function createAlert(element ,prompt) {
   alertValue = true;
 }
 
-//regex link validator 
-function validate(urlValue) {
-
-  // Regex expression imported
-  const expression = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/g;
-  const regex = new RegExp(expression);
-
-// If there is no url value alert
-if (!urlValue){
-  alert('Please provide a valid url.')
-  return false;
-}
-// if the url is valid, it matches
-  if (urlValue.match(regex)){
-      console.log('match');
-      if(alertValue == true){
-          document.querySelector("p").remove()
-          alertValue= false;
-      }
-     
-  }
-  // if the url doesn't match then creates an alert
-  if(!urlValue.match(regex)) {
-  if (alertValue == false) {
-      createAlert()
-      alertValue = true;
-  }   
-      return false;
-  }
-
-  return true;
-}
 
 
 // Loading function
@@ -98,7 +66,9 @@ function complete() {
 }
 
 
+
 const connect =  () => {
+
   window.getWeb3().then(async (web3) => {
     const networkId = await web3.eth.net.getId();
     $.getJSON("/FundingCreator.json", (FundingCreatorContract) => {
@@ -129,7 +99,11 @@ const connect =  () => {
             address
           );
 
-
+          if( window.ethereum._state.accounts.length == 0 ) {
+            console.log("Please Connect Metamask")
+          } else {
+            console.log("metamask connected")
+          }
 
   // Admin Authentication and Rights
         var admin = await fundraiserInstance.methods.admin().call()
@@ -232,7 +206,25 @@ const createFundRaiser = async function(event) {
 const getFundAddress = async (i) => { return await instance.methods.fundings(noOfContracts).call() }
 
 window.addEventListener('load', () => {
-  if (window.web3Resolved) {
+
+function updateAccounts() {
+  if (window.ethereum._state.accounts.length == 1) {
     connect()
+    var accAddress = window.ethereum._state.accounts[0]
+    document.querySelector(".connect-button").hidden = true;
+    document.querySelector(".user-dropdown").classList.remove("hidden") 
+    document.querySelector("#user").innerText = accAddress.slice(0, 6) + "..." + accAddress.slice(-4)
+    
+  } else {
+    document.querySelector(".user-dropdown").classList.add("hidden") 
+    document.querySelector(".connect-button").hidden = false;
+    
   }
-});
+  if (window.web3Resolved) {
+    
+  } 
+}  
+setInterval(updateAccounts, 1000);
+
+}); 
+

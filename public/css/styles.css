@@ -28,7 +28,7 @@ body{
      margin: 0;
      background-color: var(--background-color);
      font-family: 'Rubik', sans-serif;
-   
+    
 }
 a{
      text-decoration: none;
@@ -52,7 +52,7 @@ a{
      font-family: 'Yanone Kaffeesatz', sans-serif;
      font-size: 28px;
      display: inline-block;
-     color: rgb(148, 148, 12);
+     color: #ff8100;
 }  
 .mango-logo{
      transition-duration: 0.2s;
@@ -62,7 +62,6 @@ a{
      
      transform : rotate(-20deg)
 }
-
  .navbar-left {
      position: absolute;
      display: flex;
@@ -79,13 +78,33 @@ a{
      border-radius : 20px;
 
 }
+.connect-button {
+      background-color: #fc2e20;
+      color: black;
+      font: var(--yanone);
+      width: 80px;
+      height : 30px;
+      border-radius: 10px;
+      cursor: pointer;
+      position: absolute;
+      right: 20px;
+      top: 28px;
+      transition-duration: 0.2s;
+}
+.connect-button:hover {
+     background-color: black;
+     color: white;
+}
+.hidden{
+     display: none !important;
+}
 .user {
      color: black !important;
      display: inline-block;
      margin-left:30px;
      cursor: pointer;
      transition-duration: 0.1s;
-      
+     font-weight: normal;
      background-color: var(--background-color);
      border-radius: 20px;
      padding: 5px;
@@ -129,10 +148,11 @@ a{
      color: rgb(0, 0, 0);
      cursor: pointer;
      transition-duration: 0.1s;
-     font-weight: bold;
+     font-weight: medium;
+     font-family: var(--another-cute-font);
 }
 .buttons:hover{
-     color: rgb(24, 223, 230);
+     color: rgb(226, 86, 4);
 }
 /* Loader Body */
 .loader-wrapper{
@@ -155,9 +175,9 @@ a{
      box-shadow: 1px 2px 4px 1px rgb(0, 0, 0, 0.4);
 }
 .header-div{
-     grid-area: header;
-     font-family: var(--cute-font);
-     text-align: center;
+      grid-area: header;
+      font-family: var(--cute-font);
+      text-align: center;
 }
 /* Main Div */
 .main-div{

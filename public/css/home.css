@@ -1,3 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+:root {
+    --mango-theme : #ff8100;
+    --font-color : whitesmoke;
+}
+
 #navbar {
-    box-shadow: none !important;
+    box-shadow: none;
+    background-color: whitesmoke;
+     background-image: url("/img/background.png");
+}
+
+body {
+    background-image: url("/img/background.png");
+}
+
+
+/* introduction  */
+.introduction {
+   text-align: center;
+  
+   height: 400px;
+}
+.intro-div {
+    display: flexbox;
+    margin-top: 10%;
+}
+.introduction h1 {
+    font-weight:bold;
+    color: #FC2E20;
+
+}
+.introduction h4 {  
+    font-weight: lighter;
+    font-family: 'Montserrat', sans-serif;
+}
+.intro-create-button {
+    height: 40px;
+    width:max-content;
+    font-family: 'Varela Round';
+    color: black;
+    background: white;
+    border-radius: 11px;
+    padding: 10px;
+    border-style: solid;
+    transition-duration: 0.2s;
+    cursor: pointer;
+}
+.intro-create-button:hover {
+    background: rgb(0, 0, 0);
+    color: #f5f5f5;
+
+}
+.intro-contract-button {
+    height: 40px;
+    width:max-content;
+    font-family: 'Varela Round';
+    color: rgb(255, 246, 246);
+    background: rgb(0, 0, 0);
+    border-radius: 11px;
+    padding: 10px;
+    border-style: solid;
+    transition-duration: 0.2s;
+    cursor: pointer;
+}
+.intro-contract-button:hover {
+    color: rgb(0, 0, 0);
+    background : white;
+}
+
+/* Information Div  */
+
+.information {
+    color: var(--font-color);
+    background-color: black ;
+    height: max-content;
+    padding: 20px 100px;
+}
+.information p {
+    
+}
+.information p span{
+    color: var(--mango-theme);
+
+}
+.info-div {
+    
+}
+.info-div h3 {
+    text-align: center;
+    letter-spacing: 2px;
+    font-size: 30px;
+    color: var(--mango-theme)
+}
+
+
+
+/* Qualities Div  */
+.qualities {
+    padding: 15px;
+}
+.qualities div {
+    
+    margin-top: 100px;
+}
+.qualities div p {
+     word-wrap: break-word;
+     width: 60%;
+
+}
+/*limitless*/
+.icon {
+height: 200px;
+width: 200px;
+display: inline-block;
+}
+.right-icon {
+    float : right;
+}
+.left-icon {
+    float : left;
+}
+.left {
+    text-align: left;
+    margin-left: 400px;
+}
+.right {
+    text-align: left;
+}
+
+/* usecases */
+
+.usecases {
+    padding: 30px 100px;
+}
+.usecases h2 {
+    text-align: center;
+    color: ;
+}
+.usecases h2 span {
+    color : #FC2E20
+}
+
+hr {
+    margin-top: 50px;
+}
+/* Card Containers */
+
+.container {
+    margin-top: 50px;
+}
+.container img {
+    width: 100px;
+    height: 100px;
+    
+}
+.card{
+    display: inline-block;
+    align-items: center;
+    background-color:black;
+    width: 25%;
+    margin-left: 43px;
+    height: 20%;
+    padding: 20px;
+    border-radius: 20px;
+    color: var(--font-color);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+.card:hover {
+    box-shadow: 1px 5px 10px 0 rgba(0,0,0,1)
+}
+
+.future-usecases {
+    margin-top: 50px;
 }

@@ -25,14 +25,14 @@
     <h2>Create A Fundraiser</h2>
     <div class="form-div">
 
-      <form id="create-form" onsubmit="return createFundRaiser(event)">
+      <form id="create-form" action="/fundraiser" onsubmit="return createFundRaiser(event)">
 
         <label for="funding-head">Title :</label>
-        <input class="input" value="Help me do " required type="text" id="funding-head"
+        <input class="title" value="Help me do " required type="text" id="funding-head"
           placeholder="Give a title to your fundraiser!">
 
         <label for="funding-description">Description :</label>
-        <textarea name="input" minlength="200" placeholder="Describe your purpose in detail" class="input"
+        <textarea name="description" minlength="200" placeholder="Describe your purpose in detail" class="input"
           id="funding-description" cols="30" rows="10" required></textarea>
         <p style="font-size:small;">A good description can increase your chances of getting contributions!</p>
 
@@ -60,6 +60,7 @@
       </form>
     </div>
   </div>
+  
   <script src="js/web3.js"></script>
   <script src="js/index.js"></script>
   <script src="js/fund.js"></script>

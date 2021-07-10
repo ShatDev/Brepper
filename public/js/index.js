@@ -223,10 +223,18 @@ const getAccounts = async () => {
 
 const createFundRaiser = async function(event) {
   event.preventDefault();
+  if (!window.instance)
+    await connect();
   // get up to date account data when you already submit the form
   const [account] = await getAccounts() // just destructuring result to get the first account
-  const result = await instance.methods.createFunding(goal.value, 1728000).send({from: account});
+  const result = await window.instance.methods.createFunding(goal.value, 1728000).send({from: account});
   return false;
 }
  
-const getFundAddress = async (i) => { return await instance.methods.fundings(noOfContracts).call() }
+const getFundAddress = async (i) => { return await window.instance.methods.fundings(noOfContracts).call() }
+
+window.addEventListener('load', async () => {
+  const web3 = new Web3(window.ethereum);
+  const accounts = await web3.eth.getAccounts();
+  if (accounts.length) connect()
+});

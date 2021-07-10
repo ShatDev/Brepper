@@ -81,9 +81,9 @@ contract CrowdFunding {
     
     function withdrawFunds() public onlyAdmin{
         require(raisedAmount >= goal);
-        raisedAmount = 0;
-       // admin.transfer(address(this).balance);
+        admin.transfer(raisedAmount);
         emit fundsWithdrawn(raisedAmount);
+        raisedAmount = 0;
     }
     
 }

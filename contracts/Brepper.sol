@@ -53,6 +53,8 @@ contract CrowdFunding {
         require(block.timestamp < deadline, "deadline has passed!");
         require(msg.value >= minimumContribution, "Minimum Contribution Not Met!");
         
+        // payable(address(this)).transfer(msg.value);
+
         if(contributors[msg.sender] == 0){  
             numberOfContributors++;
             } 
@@ -77,10 +79,11 @@ contract CrowdFunding {
         _;
     }
     
-    function withdrawFunds(uint _value ) public onlyAdmin{
+    function withdrawFunds() public onlyAdmin{
         require(raisedAmount >= goal);
-       admin.transfer(address(this).balance);
-        emit fundsWithdrawn( _value);
+        raisedAmount = 0;
+       // admin.transfer(address(this).balance);
+        emit fundsWithdrawn(raisedAmount);
     }
     
 }

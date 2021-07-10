@@ -236,5 +236,5 @@ const getFundAddress = async (i) => { return await window.instance.methods.fundi
 window.addEventListener('load', async () => {
   const web3 = new Web3(window.ethereum);
   const accounts = await web3.eth.getAccounts();
-  if (accounts.length) connect()
+  if (accounts?.length) connect()
 });

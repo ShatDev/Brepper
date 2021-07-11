@@ -32,8 +32,8 @@ body {
 
 }
 .introduction h4 {  
-    font-weight: lighter;
-    font-family: 'Montserrat', sans-serif;
+   
+   
 }
 .intro-create-button {
     height: 40px;
@@ -72,26 +72,27 @@ body {
 /* Information Div  */
 
 .information {
+    transition: ease-in;
     color: var(--font-color);
     background-color: black ;
     height: max-content;
-    padding: 20px 100px;
+    padding: 70px 100px;
 }
-.information p {
-    
-}
+
 .information p span{
     color: var(--mango-theme);
 
 }
-.info-div {
-    
-}
+
 .info-div h3 {
     text-align: center;
     letter-spacing: 2px;
     font-size: 30px;
     color: var(--mango-theme)
+}
+.info-div p {
+    font-size: 16px;
+    line-height: 29px;
 }
 
 
@@ -102,18 +103,19 @@ body {
 }
 .qualities div {
     
-    margin-top: 100px;
+    margin-top: 150px;
 }
 .qualities div p {
      word-wrap: break-word;
      width: 60%;
-
+     line-height: 1.5rem; 
+     font-size: 16px;
 }
 /*limitless*/
 .icon {
-height: 200px;
-width: 200px;
-display: inline-block;
+     height: 200px;
+     width: 200px;
+     display: inline-block;
 }
 .right-icon {
     float : right;
@@ -128,7 +130,19 @@ display: inline-block;
 .right {
     text-align: left;
 }
-
+.link-button {
+    color : var(--accent-color);
+    transition-duration: 0.2s;
+    padding: 5px;
+    border-radius: 10px;
+    text-align: center;
+}
+.link-button:hover{
+    
+    color: black;
+    background-color:white;
+    box-shadow: 1px 5px 10px 0 rgba(0,0,0,0.1);
+}
 /* usecases */
 
 .usecases {
@@ -175,4 +189,46 @@ hr {
 
 .future-usecases {
     margin-top: 50px;
+}
+
+
+.footer {
+    display: grid;
+    padding: 20px;
+    grid-template-areas:
+    'menu menu main main right right side side'
+    'menu menu main main right right side side'
+    'menu menu main main right right side side';
+     margin-top: 100px;
+    background-color: black;
+    height: 200px;
+    color: white
+}
+.company {
+    grid-area: right;
+}
+ul {
+    list-style: none;
+}
+ul li {
+    margin-top: 20px;
+    letter-spacing: 1px;
+}
+.footer a {
+    transition-duration: 0.2s ;
+}
+.footer a:hover {
+    color: white;
+}
+
+.community {
+    
+    grid-area : main;
+}
+.navigate {
+    grid-area: side;
+}
+.contact ul li:hover{
+    background-color: turquoise;
+   
 }

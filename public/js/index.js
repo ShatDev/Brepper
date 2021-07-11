@@ -204,6 +204,7 @@ const createFundRaiser = async function(event) {
 }
  
 const getFundAddress = async (i) => { return await instance.methods.fundings(noOfContracts).call() }
+<<<<<<< HEAD
 
 window.addEventListener('load', () => {
 
@@ -228,3 +229,5 @@ setInterval(updateAccounts, 1000);
 
 }); 
 
+=======
+>>>>>>> 7766302d87cee107fe92a972bb6cac74567e0449

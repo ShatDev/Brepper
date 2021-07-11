@@ -17,6 +17,10 @@ const documentLink = document.querySelector("#doc-link")
 const progress = document.querySelector("#progress")
 let alertValue = false;
 
+
+document.querySelector(".toggle-button").addEventListener("click", function() {
+  document.querySelector(".nav-links").classList.toggle(".active")
+})
 // Get Ethereum price 
 const getPrices = async () => {
   const url = `https://coingecko.p.rapidapi.com/simple/price?ids=ethereum&vs_currencies=USD`;
@@ -53,52 +57,9 @@ function createAlert(element ,prompt) {
   alertValue = true;
 }
 
-//regex link validator 
-function validate(urlValue) {
-
-  // Regex expression imported
-  const expression = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/g;
-  const regex = new RegExp(expression);
-
-// If there is no url value alert
-if (!urlValue){
-  alert('Please provide a valid url.')
-  return false;
-}
-// if the url is valid, it matches
-  if (urlValue.match(regex)){
-      console.log('match');
-      if(alertValue == true){
-          document.querySelector("p").remove()
-          alertValue= false;
-      }
-     
-  }
-  // if the url doesn't match then creates an alert
-  if(!urlValue.match(regex)) {
-  if (alertValue == false) {
-      createAlert()
-      alertValue = true;
-  }   
-      return false;
-  }
-
-  return true;
-}
-
-
-// Loading function
-function loading() {
-  loader.hidden = false; 
-  document.querySelector(".website").hidden = true;
-}
-function complete() {
-  loader.hidden = true; 
-  document.querySelector(".website").hidden = false;
-}
-
 
 const connect =  () => {
+
   window.getWeb3().then(async (web3) => {
     const networkId = await web3.eth.net.getId();
     $.getJSON("/FundingCreator.json", (FundingCreatorContract) => {
@@ -129,7 +90,11 @@ const connect =  () => {
             address
           );
 
-
+          if( window.ethereum._state.accounts.length == 0 ) {
+            console.log("Please Connect Metamask")
+          } else {
+            console.log("metamask connected")
+          }
 
   // Admin Authentication and Rights
         var admin = await fundraiserInstance.methods.admin().call()
@@ -231,6 +196,22 @@ const createFundRaiser = async function(event) {
   return false;
 }
  
+
+
+const getFundAddress = async (i) => { return await window.instance.methods.fundings(noOfContracts).call() }
+
+
+
+const createFundRaiser = async function(event) {
+  event.preventDefault();
+  if (!window.instance)
+    await connect();
+  // get up to date account data when you already submit the form
+  const [account] = await getAccounts() // just destructuring result to get the first account
+  const result = await window.instance.methods.createFunding(goal.value, 1728000).send({from: account});
+  return false;
+}
+ 
 const getFundAddress = async (i) => { return await window.instance.methods.fundings(noOfContracts).call() }
 
 window.addEventListener('load', async () => {
@@ -238,3 +219,24 @@ window.addEventListener('load', async () => {
   const accounts = await web3.eth.getAccounts();
   if (accounts?.length) connect()
 });
+
+window.addEventListener('load', async () => {
+function updateAccounts() {
+  if (window.ethereum._state.accounts.length == 1) {
+    connect()
+    var accAddress = window.ethereum._state.accounts[0]
+    document.querySelector(".connect-button").hidden = true;
+    document.querySelector(".user-dropdown").classList.remove("hidden") 
+    document.querySelector("#user").innerText = accAddress.slice(0, 6) + "..." + accAddress.slice(-4)
+    
+  } else {
+    document.querySelector(".user-dropdown").classList.add("hidden") 
+    document.querySelector(".connect-button").hidden = false;
+    
+  }
+  if (window.web3Resolved) {
+    
+  } 
+}  
+setInterval(updateAccounts, 1000);
+})

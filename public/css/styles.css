@@ -35,14 +35,36 @@ a{
      
 } 
 
+
+/* Nav Toggle */
+.toggle-button {
+     position: absolute;
+     top: 30px;
+     right: 50px;
+     width: 30px;
+   
+     height: 21px;
+}
+
+.toggle-button .bar{
+  display: block;
+  height: 5px;
+  width: 100%;
+  margin-top: 5px;
+  background-color: rgb(155, 40, 40);
+  border-radius: 10px;
+}
 /* Navbar */
 #navbar {
      position:sticky;
-     padding: 0.2px 0 0.1px 40px;
+  
      box-shadow: -70px -11px 19px 0px rgb(0 0 0 / 40%);
      cursor: default;
      background-color: var(--secondary-color);
     
+}
+.nav{
+     padding: 0.2px 0 0.1px 40px;
 }
 .mango-logo{
   height: 30px;
@@ -418,3 +440,38 @@ label {
      font-family: var(--cute-font);
 }
 
+/* Navlinks  */
+.nav-links {
+     background-color: black;
+     color: white;
+     display: none;
+     padding: 10xp;
+}
+.link-div{
+     display: inline-block;
+}
+.nav-community {
+     color: white;
+     background-color: black;
+}
+
+@media (max-width: 600px){
+     .toggle-button {
+          display: block;
+     }
+     .buttons {
+        display: none;    
+     }
+     .connect-button{
+         display: none;
+     }
+     .nav-links{
+          display: none;
+     }
+     .active{
+          display: block;
+     }
+     .user-dropdown{
+          display: none;
+     }
+}

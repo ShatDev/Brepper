@@ -18,7 +18,7 @@ const progress = document.querySelector("#progress")
 let alertValue = false;
 
 
-document.querySelector(".toggle-button").addEventListener("click", function() {
+document.querySelector(".toggle-button")?.addEventListener("click", function() {
   document.querySelector(".nav-links").classList.toggle(".active")
 })
 // Get Ethereum price 
@@ -73,100 +73,102 @@ const connect =  () => {
       })
       window.instance = instance;
 
-      $.getJSON("/CrowdFunding.json", (CrowdFundingContract) => {
+      const urlSearchParams = new URLSearchParams(window.location.search);
+      const params = Object.fromEntries(urlSearchParams.entries());
+      if (params.index) {
+        $.getJSON("/CrowdFunding.json", (CrowdFundingContract) => {
 
-        const deployedNetwork = FundingCreatorContract.networks[networkId];
-        const instance = new web3.eth.Contract(
-          FundingCreatorContract.abi,
-          deployedNetwork && deployedNetwork.address
-        );
-      
-        const urlSearchParams = new URLSearchParams(window.location.search);
-        const params = Object.fromEntries(urlSearchParams.entries());
-        (async () => {
-          const address = await instance.methods.getFundingContractAddress(params.index).call();
-          const fundraiserInstance = new web3.eth.Contract(
-            CrowdFundingContract.abi,
-            address
+          const deployedNetwork = FundingCreatorContract.networks[networkId];
+          const instance = new web3.eth.Contract(
+            FundingCreatorContract.abi,
+            deployedNetwork && deployedNetwork.address
           );
-
-          if( window.ethereum._state.accounts.length == 0 ) {
-            console.log("Please Connect Metamask")
-          } else {
-            console.log("metamask connected")
-          }
-
-  // Admin Authentication and Rights
-        var admin = await fundraiserInstance.methods.admin().call()
-  
-        const [adminAcc] = await getAccounts();
         
+          (async () => {
+            const address = await instance.methods.getFundingContractAddress(params.index).call();
+            const fundraiserInstance = new web3.eth.Contract(
+              CrowdFundingContract.abi,
+              address
+            );
 
-
-          if(admin.toLowerCase() == adminAcc) {
-            withdrawButton.classList.remove("hidden")
-          } else {
-            console.log("Not Admin")
-          }; 
-  //Withdraw Button 
-          withdrawButton.addEventListener("click", async function() {
-            await fundraiserInstance.methods.withdrawFunds(7).send({from : adminAcc, value : web3.utils.toWei("1")});
-          })
-
-          
-  //Display the goal and the amount raised
-          const goal = await fundraiserInstance.methods.goal().call()
-          for(var i = 0 ; i < goalElement.length ; i++ ) {
-            goalElement[i].innerText = web3.utils.fromWei(goal) + " Ethers"
-          }
-
-
-          // const deadline = await fundraiserInstance.methods.deadline().call()
-          // document.querySelector('.deadline').innerText = deadline
-
-  // Display the amount raised
-          const raisedAmount = await fundraiserInstance.methods.raisedAmount().call()
-
-          for(var r = 0; r < raisedElement.length ; r++){
-            raisedElement[r].innerText = web3.utils.fromWei(raisedAmount) + " Ethers"
-          }  
-  //contribute amount value     
-        const contributeAmount = document.querySelector("#contribute-amount");
-  //setting up value in dollars  
-          var raisedDollarValue =  await toUSD(web3.utils.fromWei(raisedAmount))
-          raisedDollars.innerText = raisedDollarValue.toFixed(2) + "$"
-          var goalDollarValue = await toUSD(web3.utils.fromWei(goal))
-          goalDollars.innerText = goalDollarValue.toFixed(2) + "$"
-
-  // Donate Button 
-
-          var clicks = 0;
-
-          donateButton.addEventListener("click", async function() {
-          
-
-            if (clicks == 0){
-              $("#contribute-amount").slideDown()
-            } else{
-              const [account] = await getAccounts()
-
-              if(contributeAmount.value == null){
-                console.log("null value")
-                createAlert(contributeAmount, "Please enter a value")
-              } else {
-                fundraiserInstance.methods.contribute().send({from : account , value: web3.utils.toWei(contributeAmount.value)})
-              }
+            if( window.ethereum._state.accounts.length == 0 ) {
+              console.log("Please Connect Metamask")
+            } else {
+              console.log("metamask connected")
             }
-            clicks++;         
-          })
 
-  //display progress percentage
-          let progressPercent =  (raisedAmount / goal) * 100
-          progress.style.width = progressPercent + "%"
+    // Admin Authentication and Rights
+          var admin = await fundraiserInstance.methods.admin().call()
+    
+          const [adminAcc] = await getAccounts();
+          
 
 
-        })()
-      });
+            if(admin.toLowerCase() == adminAcc) {
+              withdrawButton.classList.remove("hidden")
+            } else {
+              console.log("Not Admin")
+            }; 
+    //Withdraw Button 
+            withdrawButton.addEventListener("click", async function() {
+              await fundraiserInstance.methods.withdrawFunds(7).send({from : adminAcc, value : web3.utils.toWei("1")});
+            })
+
+            
+    //Display the goal and the amount raised
+            const goal = await fundraiserInstance.methods.goal().call()
+            for(var i = 0 ; i < goalElement.length ; i++ ) {
+              goalElement[i].innerText = web3.utils.fromWei(goal) + " Ethers"
+            }
+
+
+            // const deadline = await fundraiserInstance.methods.deadline().call()
+            // document.querySelector('.deadline').innerText = deadline
+
+    // Display the amount raised
+            const raisedAmount = await fundraiserInstance.methods.raisedAmount().call()
+
+            for(var r = 0; r < raisedElement.length ; r++){
+              raisedElement[r].innerText = web3.utils.fromWei(raisedAmount) + " Ethers"
+            }  
+    //contribute amount value     
+          const contributeAmount = document.querySelector("#contribute-amount");
+    //setting up value in dollars  
+            var raisedDollarValue =  await toUSD(web3.utils.fromWei(raisedAmount))
+            raisedDollars.innerText = raisedDollarValue.toFixed(2) + "$"
+            var goalDollarValue = await toUSD(web3.utils.fromWei(goal))
+            goalDollars.innerText = goalDollarValue.toFixed(2) + "$"
+
+    // Donate Button 
+
+            var clicks = 0;
+
+            donateButton.addEventListener("click", async function() {
+            
+
+              if (clicks == 0){
+                $("#contribute-amount").slideDown()
+              } else{
+                const [account] = await getAccounts()
+
+                if(contributeAmount.value == null){
+                  console.log("null value")
+                  createAlert(contributeAmount, "Please enter a value")
+                } else {
+                  fundraiserInstance.methods.contribute().send({from : account , value: web3.utils.toWei(contributeAmount.value)})
+                }
+              }
+              clicks++;         
+            })
+
+    //display progress percentage
+            let progressPercent =  (raisedAmount / goal) * 100
+            progress.style.width = progressPercent + "%"
+
+
+          })()
+        });
+      }
     });
     if (web3.eth.accounts[0] !== account) {
       account = web3.eth.accounts[0];
@@ -189,7 +191,7 @@ const getAccounts = async () => {
 const createFundRaiser = async function(event) {
   event.preventDefault();
   if (!window.instance)
-    await connect();
+    connect();
   // get up to date account data when you already submit the form
   const [account] = await getAccounts() // just destructuring result to get the first account
   const result = await window.instance.methods.createFunding(goal.value, 1728000).send({from: account});
@@ -200,19 +202,6 @@ const createFundRaiser = async function(event) {
 
 const getFundAddress = async (i) => { return await window.instance.methods.fundings(noOfContracts).call() }
 
-
-
-const createFundRaiser = async function(event) {
-  event.preventDefault();
-  if (!window.instance)
-    await connect();
-  // get up to date account data when you already submit the form
-  const [account] = await getAccounts() // just destructuring result to get the first account
-  const result = await window.instance.methods.createFunding(goal.value, 1728000).send({from: account});
-  return false;
-}
- 
-const getFundAddress = async (i) => { return await window.instance.methods.fundings(noOfContracts).call() }
 
 window.addEventListener('load', async () => {
   const web3 = new Web3(window.ethereum);
